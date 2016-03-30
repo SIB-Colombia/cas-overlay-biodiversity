@@ -20,6 +20,11 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.10</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jasig.cas</groupId>
+			<artifactId>cas-server-integration-mongo</artifactId>
+			<version>${cas.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
