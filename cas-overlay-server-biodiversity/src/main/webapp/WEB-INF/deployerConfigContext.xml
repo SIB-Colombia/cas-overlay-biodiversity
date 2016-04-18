@@ -43,17 +43,18 @@
 	<alias name="personDirectoryPrincipalResolver" alias="primaryPrincipalResolver" />
 
 	<util:map id="attrRepoBackingMap">
-		<entry key="uid" value="uid" />
-		<entry key="eduPersonAffiliation" value="eduPersonAffiliation" />
-		<entry key="groupMembership" value="groupMembership" />
+		<entry key="firstName" value="firstName" />
+		<entry key="lastName" value="lastName" />
 		<entry>
 			<key>
-				<value>memberOf</value>
+				<value>roles</value>
 			</key>
 			<list>
-				<value>faculty</value>
-				<value>staff</value>
-				<value>org</value>
+				<value>user</value>
+				<value>reviser</value>
+				<value>general_reviser</value>
+				<value>administrator</value>
+				<value>collection_administrator</value>
 			</list>
 		</entry>
 	</util:map>
