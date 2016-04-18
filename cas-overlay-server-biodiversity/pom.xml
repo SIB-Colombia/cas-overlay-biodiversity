@@ -128,5 +128,9 @@
 			<id>sonatype-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</repository>
+		<repository>
+			<id>sib-maven-public</id>
+			<url>http://localhost:8081/repository/maven-public/</url>
+		</repository>
 	</repositories>
 </project>
