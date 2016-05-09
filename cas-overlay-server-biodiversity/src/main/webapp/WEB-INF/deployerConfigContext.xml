@@ -33,16 +33,16 @@
 		<ref bean="rememberMeAuthenticationMetaDataPopulator" />
 	</util:list>
 
-	<bean id="attributeRepository"
+	<!-- <bean id="attributeRepository"
 		class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
-		p:backingMap-ref="attrRepoBackingMap" />
+		p:backingMap-ref="attrRepoBackingMap" /> -->
 
 	<!-- <alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" 
 		/> -->
 	<alias name="mongoAuthenticationHandler" alias="primaryAuthenticationHandler" />
 	<alias name="personDirectoryPrincipalResolver" alias="primaryPrincipalResolver" />
 
-	<util:map id="attrRepoBackingMap">
+	<!-- <util:map id="attrRepoBackingMap">
 		<entry key="firstName" value="firstName" />
 		<entry key="lastName" value="lastName" />
 		<entry>
@@ -57,7 +57,44 @@
 				<value>collection_administrator</value>
 			</list>
 		</entry>
-	</util:map>
+	</util:map> -->
+	
+	<bean id="mongo" class="com.mongodb.MongoClient">
+		<constructor-arg name="host" value="192.168.99.100" />
+		<constructor-arg name="port" value="27017" />
+	</bean>
+	
+	<bean id="attributeRepository" class="org.jasig.services.persondir.support.mongo.MongoPersonAttributeDao">
+		<constructor-arg index="0" ref="mongo" />
+		<constructor-arg index="1" value="cas" />
+		<constructor-arg index="2" value="users" />
+		<property name="queryAttributeMapping">
+			<map>
+				<entry key="username" value="email" />
+				<entry key="_id" value="id" />
+				<entry key="username" value="email" />
+				<entry key="firstname" value="firstname" />
+				<entry key="lastname" value="lastname" />
+				<entry key="roles" value="roles" />
+			</map>
+		</property>
+		<property name="resultAttributeMapping">
+			<map>
+				<entry key="_id" value="id" />
+				<entry key="email" value="email" />
+				<entry key="firstname" value="firstname" />
+				<entry key="lastname" value="lastname" />
+				<entry key="roles" value="roles" />
+			</map>
+		</property>
+	</bean>
+	
+	<!--<bean id="attributeRepository" class="org.jasig.services.persondir.support.MongoPersonAttributeDao">
+		<constructor-arg index="0" value="192.168.99.100" />
+		<constructor-arg index="1" value="27017" />
+		<constructor-arg index="2" value="db" />
+		<constructor-arg index="3" value="collection" />
+	</bean> -->
 
 	<alias name="serviceThemeResolver" alias="themeResolver" />
 
@@ -88,6 +125,9 @@
 		<property name="salt"
 			value="!12!1O~u9=.51~2_1;~:o;8_:!J.:|^c*4;+zF~-.6%!:k5_==!+~%G9_^_S6%3A" />
 	</bean>
+	
+	<!-- <bean id="MongoPersonAttributeDao" class="org.jasig.services.persondir.support.MongoPersonAttributeDao">
+	</bean> -->
 
 	<alias name="neverThrottle" alias="authenticationThrottle" />
 

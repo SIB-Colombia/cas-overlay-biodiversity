@@ -104,9 +104,19 @@
 			<version>${cas.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.unicon.persondir</groupId>
-			<artifactId>persondir-addons</artifactId>
-			<version>${persondir-addons.version}</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jasig.service.persondir</groupId>
+			<artifactId>person-directory-impl</artifactId>
+			<version>1.7.0-sib</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${mongodb.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -117,6 +127,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<persondir-addons.version>0.3.1-SNAPSHOT</persondir-addons.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mongodb.version>3.2.2</mongodb.version>
 	</properties>
 
 	<repositories>
